@@ -52,7 +52,7 @@ $dark-app-theme:   mat-dark-theme((
   $foreground-color: mat-color($_foreground, text);
   p.teapot {
     border: 1px solid mat-color($app-primary);
-    background-color: darken($background-color, 0.2);
+    background-color: darken($background-color, 10%);
     color: $foreground-color;
   }
 }
