@@ -6,31 +6,20 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$app-primary: mat-palette($mat-indigo);
-$app-accent:  mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$app-warn:    mat-palette($mat-red);
-
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as `color` or `typography`.
 $light-app-theme: mat-light-theme((
   color: (
-    primary: $app-primary,
-    accent: $app-accent,
-    warn: $app-warn,
+    primary: mat-palette($mat-indigo),
+    accent: mat-palette($mat-pink, A200, A100, A400),
+    warn: mat-palette($mat-red),
   )
 ));
 
 // Define an alternate dark theme.
 $dark-app-theme:   mat-dark-theme((
   color: (
-    primary: $app-primary,
-    accent: $app-accent,
-    warn: $app-warn,
+    primary: mat-palette($mat-cyan),
+    accent: mat-palette($mat-blue-gray, A200, A100, A400),
+    warn: mat-palette($mat-amber),
   )
 ));
 
@@ -50,8 +39,9 @@ $dark-app-theme:   mat-dark-theme((
   $_foreground: map-get($theme, foreground);
   $background-color: mat-color($_background, background);
   $foreground-color: mat-color($_foreground, text);
+  $primary: map-get($theme, primary);
   p.teapot {
-    border: 1px solid mat-color($app-primary);
+    border: 1px solid mat-color($primary);
     background-color: darken($background-color, 10%);
     color: $foreground-color;
   }
