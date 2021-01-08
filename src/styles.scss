@@ -1,9 +1,5 @@
 @import '~@angular/material/theming';
-// Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat-core();
 
 $light-app-theme: mat-light-theme((
@@ -15,7 +11,7 @@ $light-app-theme: mat-light-theme((
 ));
 
 // Define an alternate dark theme.
-$dark-app-theme:   mat-dark-theme((
+$dark-app-theme: mat-dark-theme((
   color: (
     primary: mat-palette($mat-cyan),
     accent: mat-palette($mat-blue-gray, A200, A100, A400),
@@ -23,42 +19,29 @@ $dark-app-theme:   mat-dark-theme((
   )
 ));
 
-// Body Theming
-@mixin body-theme($theme) {
-  $_background: map-get($theme, background);
-  $app-background-color: mat-color($_background, background);
-
-  body {
-    background-color: $app-background-color;
-  }
-}
-
-// Teapot Theming
-@mixin teapot-theme($theme) {
+@mixin theme-colors($theme) {
   $_background: map-get($theme, background);
   $_foreground: map-get($theme, foreground);
+  $_primary: map-get($theme, primary);
   $background-color: mat-color($_background, background);
   $foreground-color: mat-color($_foreground, text);
-  $primary: map-get($theme, primary);
-  p.teapot {
-    border: 1px solid mat-color($primary);
-    background-color: darken($background-color, 10%);
-    color: $foreground-color;
-  }
+  $primary-color: mat-color($_primary);
+  --app-background-color: #{$background-color};
+  --app-background-dark-color: #{darken($background-color, 10%)};
+  --app-foreground-color: #{$foreground-color};
+  --app-primary-color: #{$primary-color};
 }
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($light-app-theme);
-@include body-theme($light-app-theme);
-@include teapot-theme($light-app-theme);
+:root {
+  @include angular-material-color($light-app-theme);
+  @include theme-colors($light-app-theme);
+}
 
-// Include the dark color styles inside of a block with a CSS class. You can make this
-// CSS class whatever you want. In this example, any component inside of an element with
-// `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .dark-theme {
   @include angular-material-color($dark-app-theme);
-  @include body-theme($dark-app-theme);
-  @include teapot-theme($dark-app-theme);
+  @include theme-colors($dark-app-theme);
+}
+
+body {
+  background-color: var(--app-background-color);
 }
