@@ -7,12 +7,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { TeapotComponent } from './teapot/teapot.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ThemeSwitchComponent,
-    ThemeSwitchComponent
+    ThemeSwitchComponent,
+    TeapotComponent
   ],
   imports: [
     BrowserModule,

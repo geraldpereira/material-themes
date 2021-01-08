@@ -44,11 +44,25 @@ $dark-app-theme:   mat-dark-theme((
   }
 }
 
+// Teapot Theming
+@mixin teapot-theme($theme) {
+  $_background: map-get($theme, background);
+  $_foreground: map-get($theme, foreground);
+  $background-color: mat-color($_background, background);
+  $foreground-color: mat-color($_foreground, text);
+  p.teapot {
+    border: 1px solid mat-color($app-primary);
+    background-color: darken($background-color, 0.2);
+    color: $foreground-color;
+  }
+}
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($light-app-theme);
 @include body-theme($light-app-theme);
+@include teapot-theme($light-app-theme);
 
 // Include the dark color styles inside of a block with a CSS class. You can make this
 // CSS class whatever you want. In this example, any component inside of an element with
@@ -56,4 +70,5 @@ $dark-app-theme:   mat-dark-theme((
 .dark-theme {
   @include angular-material-color($dark-app-theme);
   @include body-theme($dark-app-theme);
+  @include teapot-theme($dark-app-theme);
 }
